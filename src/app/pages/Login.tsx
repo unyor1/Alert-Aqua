@@ -70,9 +70,9 @@ export function Login() {
       return;
     }
 
-    if (profile && profile.role !== "admin" && !profile.approved) {
+    if (!profile || (profile.role !== "admin" && !profile.approved)) {
       await supabase.auth.signOut();
-      setError("Your account is pending approval. Please wait for an admin to approve your registration.");
+      setError("Your account is not approved or has been rejected.");
       return;
     }
 
