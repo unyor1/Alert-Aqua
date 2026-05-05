@@ -8,6 +8,7 @@ import { Admin } from "./pages/Admin";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { ResetPassword } from "./pages/ResetPassword";
 import { Layout } from "./components/Layout";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -19,9 +20,9 @@ export const router = createBrowserRouter([
       { path: "register", element: <Register /> },
       { path: "forgot-password", element: <ForgotPassword /> },
       { path: "reset-password", element: <ResetPassword /> },
-      { path: "dashboard", element: <Dashboard /> },
-      { path: "history", element: <History /> },
-      { path: "admin", element: <Admin /> },
+      { path: "dashboard", element: <ProtectedRoute><Dashboard /></ProtectedRoute> },
+      { path: "history", element: <ProtectedRoute><History /></ProtectedRoute> },
+      { path: "admin", element: <ProtectedRoute adminOnly><Admin /></ProtectedRoute> },
     ],
   },
 ]);
