@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/auto-alert.ts": {
+      "runtime": "nodejs18"
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/auto-alert",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
