@@ -72,7 +72,7 @@ export function Login() {
 
     if (!profile || (profile.role !== "admin" && !profile.approved)) {
       await supabase.auth.signOut();
-      setError("Your account is not approved or has been rejected.");
+      navigate("/?status=rejected", { replace: true });
       return;
     }
 
