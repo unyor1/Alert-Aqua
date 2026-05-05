@@ -9,6 +9,8 @@ export function Landing() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [alertMessage, setAlertMessage] = useState("");
+
   useEffect(() => {
     let mounted = true;
     const check = async () => {
@@ -17,7 +19,13 @@ export function Landing() {
       if (!mounted) return;
       setIsLoggedIn(!!session);
       const params = new URLSearchParams(window.location.search);
-      if (session && !params.has('loggedOut')) {
+
+      if (params.get("status") === "rejected") {
+        setAlertMessage("Account rejected. Try contacting the admin.");
+        return;
+      }
+
+      if (session && !params.has("loggedOut")) {
         navigate("/dashboard");
       }
     };
@@ -30,6 +38,11 @@ export function Landing() {
       {/* Hero Section */}
       <section className="bg-[#F1F5F9] text-slate-900 py-20">
         <div className="container mx-auto px-4 text-center">
+          {alertMessage && (
+            <div className="mb-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-left text-sm text-red-700">
+              {alertMessage}
+            </div>
+          )}
           <h1 className="text-5xl font-bold mb-6">
             Stay Safe with Real-Time Flood Monitoring
           </h1>
