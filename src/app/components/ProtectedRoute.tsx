@@ -36,7 +36,7 @@ export function ProtectedRoute({ children, adminOnly = false }: ProtectedRoutePr
       if (isRejectedOrMissing) {
         if (active) {
           await supabase.auth.signOut({ scope: "local" });
-          navigate("/login", { replace: true });
+          navigate("/?status=rejected", { replace: true });
         }
         return;
       }
