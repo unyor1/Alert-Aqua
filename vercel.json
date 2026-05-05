@@ -1,9 +1,7 @@
 {
-  "functions": {
-    "api/auto-alert.ts": {
-      "runtime": "nodejs18"
-    }
-  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ], 
   "crons": [
     {
       "path": "/api/auto-alert",
